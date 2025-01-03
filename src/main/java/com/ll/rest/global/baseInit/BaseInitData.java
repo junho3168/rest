@@ -8,8 +8,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.transaction.annotation.Transactional;
+
 @Configuration
 @RequiredArgsConstructor
+
 public class BaseInitData {
     private final PostService postService;
     @Autowired
