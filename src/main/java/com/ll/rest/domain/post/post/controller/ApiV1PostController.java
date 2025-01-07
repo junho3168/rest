@@ -94,24 +94,28 @@ public class ApiV1PostController {
             String content
     ) {
     }
+    record PostWriteResBody(
+            PostDto item,
+            long totalCount
+    ) {
+    }
+
 
     @PostMapping
-    public RsData<Map<String, Object>> writeItems(
+    public RsData<PostWriteResBody> writeItems(
             @RequestBody @Valid PostWriteReqBody reqBody
     ) {
         Post post = postService.write(reqBody.title, reqBody.content);
 
-        Map<String, Object> data = Map.of(
-                "id", new PostDto(post),
-                "totalCount", postService.count()
-        );
 
         return new RsData<>(
                 "200-1",
                 "%d번 글이 작성되었습니다".formatted(post.getId()),
-                data
-
+                new PostWriteResBody(
+                        new PostDto(post),
+                        postService.count()
+                )
         );
     }
 }
-//27강부터 시작
+//31강부터 시작
