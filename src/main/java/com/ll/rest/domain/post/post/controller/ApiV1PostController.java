@@ -1,5 +1,6 @@
 package com.ll.rest.domain.post.post.controller;
 
+import com.ll.rest.domain.post.post.dto.PostDto;
 import com.ll.rest.domain.post.post.entity.Post;
 import com.ll.rest.domain.post.post.service.PostService;
 import com.ll.rest.global.rsData.RsData;
@@ -29,10 +30,12 @@ public class ApiV1PostController {
     }
 
     @GetMapping("/{id}")
-    public Post getItems(
+    public PostDto getItems(
             @PathVariable long id
     ) {
-        return postService.findById(id).get();
+        Post post = postService.findById(id).get();
+
+        return new PostDto(post);
     }
 
     @DeleteMapping("/{id}")
@@ -97,3 +100,4 @@ public class ApiV1PostController {
 
     }
 }
+//Post DTO부터 시작
