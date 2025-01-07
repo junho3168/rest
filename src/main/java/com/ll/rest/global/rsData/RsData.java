@@ -9,5 +9,10 @@ import lombok.Getter;
 public class RsData {
     private String resultCode;
     private String msg;
+    private long data;
 
+    public RsData(String resultCode, String msg) {
+        this(resultCode, msg, 0);
+    }
 }
+
