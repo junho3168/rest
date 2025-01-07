@@ -96,7 +96,7 @@ public class ApiV1PostController {
     }
 
     @PostMapping
-    public RsData<Long> writeItems(
+    public RsData<PostDto> writeItems(
             @RequestBody @Valid PostWriteReqBody reqBody
     ) {
         Post post = postService.write(reqBody.title, reqBody.content);
@@ -104,7 +104,7 @@ public class ApiV1PostController {
         return new RsData<>(
                 "200-1",
                 "%d번 글이 작성되었습니다".formatted(post.getId()),
-                post.getId()
+                new PostDto(post)
         );
     }
 }
