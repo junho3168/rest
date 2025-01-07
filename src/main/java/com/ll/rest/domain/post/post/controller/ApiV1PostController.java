@@ -69,7 +69,7 @@ public class ApiV1PostController {
 
     @PutMapping("/{id}")
     @Transactional
-    public RsData modifyItems(
+    public RsData<PostDto> modifyItems(
             @PathVariable long id,
             @RequestBody @Valid PostModifyReqBody reqBody
     ) {
@@ -77,7 +77,7 @@ public class ApiV1PostController {
 
         postService.modify(post, reqBody.title, reqBody.content);
 
-        return new RsData("200-1",
+        return new RsData<>("200-1",
                 "%d번 글이 수정되었습니다".formatted(id),
                 new PostDto(post)
         );
