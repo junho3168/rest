@@ -47,19 +47,16 @@ public class ApiV1PostController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<RsData<Void>> deleteItems(
+    public RsData<Void> deleteItems(
             @PathVariable long id
     ) {
         Post post = postService.findById(id).get();
 
         postService.delete(post);
 
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(new RsData<>(
-                        "200-1",
-                        "%d번 글이 삭제되었습니다.".formatted(id)
-                ));
+        return new RsData<>(
+                "200-1",
+                "%d번 글이 삭제되었습니다.".formatted(id));
     }
 
     record PostModifyReqBody(
@@ -107,20 +104,18 @@ public class ApiV1PostController {
 
 
     @PostMapping
-    public ResponseEntity<RsData<PostWriteResBody>> writeItems(
+    public RsData<PostWriteResBody> writeItems(
             @RequestBody @Valid PostWriteReqBody reqBody
     ) {
         Post post = postService.write(reqBody.title, reqBody.content);
 
-        return ResponseEntity
-                .status(HttpStatus.CREATED)
-                .body(new RsData<>(
-                        "201-1",
-                        "%d번 글이 작성되었습니다".formatted(post.getId()),
-                        new PostWriteResBody(
-                                new PostDto(post),
-                                postService.count()
-                        )
-                ));
+        return new RsData<>(
+                "201-1",
+                "%d번 글이 작성되었습니다".formatted(post.getId()),
+                new PostWriteResBody(
+                        new PostDto(post),
+                        postService.count()
+                )
+        );
     }
 }
