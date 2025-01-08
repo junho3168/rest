@@ -29,12 +29,13 @@ public class GlobalExceptionHandler {
     public ResponseEntity<RsData<Void>> handle (MethodArgumentNotValidException ex){
         FieldError fieldError = ex.getBindingResult().getFieldError();
         String field = fieldError.getField();
+        String code = fieldError.getCode();
         String message = ex.getBindingResult().getFieldError().getDefaultMessage();
 
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
                 .body(new RsData<>(
-                        "400-1",
+                        "400-" + field + "-" + code,
                         field + " : " + message
                 ));
     }
