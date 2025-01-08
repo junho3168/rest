@@ -55,8 +55,11 @@ public class ApiV1PostController {
         postService.delete(post);
 
         return ResponseEntity
-                .noContent()
-                .build();
+                .status(HttpStatus.OK)
+                .body(new RsData<>(
+                        "200-1",
+                        "%d번 글이 삭제되었습니다.".formatted(id)
+                ));
     }
 
     record PostModifyReqBody(
@@ -121,4 +124,3 @@ public class ApiV1PostController {
                 ));
     }
 }
-//31강부터 시작
