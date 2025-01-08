@@ -1,5 +1,6 @@
 package com.ll.rest.global.globalExceptionHandler;
 
+import com.ll.rest.global.app.AppConfig;
 import com.ll.rest.global.rsData.RsData;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -24,7 +25,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(NoSuchElementException.class)
     public ResponseEntity<RsData<Void>> handle(NoSuchElementException ex) {
 
-        ex.printStackTrace();
+        if (AppConfig.isNotProd()) ex.printStackTrace(); //개발단계에서 오류 출력해줌
 
         return ResponseEntity
                 .status(HttpStatus.NOT_FOUND)
@@ -37,7 +38,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<RsData<Void>> handle(MethodArgumentNotValidException ex) {
 
-        ex.printStackTrace();
+        if (AppConfig.isNotProd()) ex.printStackTrace();
 
         String message = ex.getBindingResult()
                 .getAllErrors()
