@@ -8,6 +8,8 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.springframework.stereotype.Component;
 
+//밑의 코드는 복붙해서 많이 사용한다 (GlobalExceptionHandler같이 룰을 선언한다)
+
 @Aspect
 @Component
 @RequiredArgsConstructor
