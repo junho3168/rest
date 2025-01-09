@@ -49,3 +49,4 @@ public class ApiV1MemberController {
     }
 }
 
+//50강 설명 읽고 51강부터 다시 시청하기
