@@ -14,8 +14,10 @@ import lombok.*;
     public class Member extends BaseTime {
         @Column(unique = true, length = 30)
         private String username;
+
         @Column(length = 50)
         private String password;
+
         @Column(length = 30)
         private String nickname;
     }
