@@ -52,5 +52,14 @@ public class BaseInitData {
         Post post1 = postService.write(memberUser1, "축구 하실 분?", "14시 까지 22명을 모아야 합니다.");
         Post post2 = postService.write(memberUser1,"배구 하실 분?", "15시 까지 12명을 모아야 합니다.");
         Post post3 = postService.write(memberUser2,"농구 하실 분?", "16시 까지 10명을 모아야 합니다.");
+        //n+1 발생할때 default_batch_fetch_size: 100 넣어주면 끝
+
+        // default_batch_fetch_size 를 통해서 N + 1 문제를 해결할 수 있다.
+
+        //이 설정은 콜렉션(리스트)안에 있는 엔티티 객체를 LAZY 로딩하기 위해서 쿼리를 실행할 때
+
+        //한번에 설정한 만큼의 객체를 SELECT 해서 가져올 수 있게 한다.
+
+        //기존의 SELECT를 많이 해서 하나씩 가져오는 것 보다 훨씬 효율적이다.
     }
 }

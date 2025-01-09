@@ -1,5 +1,6 @@
 package com.ll.rest.domain.member.member.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.ll.rest.domain.member.member.entity.Member;
 import lombok.*;
@@ -16,8 +17,9 @@ public class MemberDto {
     @JsonProperty("modifiedDatetime")
     private LocalDateTime modifyDate;
 
+    @JsonIgnore
     private String username;
-
+    @JsonIgnore
     private String password;
 
     private String nickname;
