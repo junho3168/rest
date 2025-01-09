@@ -59,8 +59,8 @@ public class GlobalExceptionHandler {
                 ));
     }
 
-    @ExceptionHandler(DataIntegrityViolationException.class)
-    public ResponseEntity<RsData<Void>> handle(DataIntegrityViolationException ex) {
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<RsData<Void>> handle(IllegalArgumentException ex) {
 
         if (AppConfig.isNotProd()) ex.printStackTrace(); //개발단계에서 오류 출력해줌
 
@@ -68,7 +68,7 @@ public class GlobalExceptionHandler {
                 .status(HttpStatus.BAD_REQUEST)
                 .body(new RsData<>(
                         "400-1",
-                        "이미 존재하는 데이터 입니다."
+                        ex.getMessage()
                 ));
     }
 }
